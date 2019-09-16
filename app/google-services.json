@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "378576808233",
+    "firebase_url": "https://searchkaro-65bde.firebaseio.com",
+    "project_id": "searchkaro-65bde",
+    "storage_bucket": "searchkaro-65bde.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378576808233:android:b3dec93142a1d8557fef38",
+        "android_client_info": {
+          "package_name": "com.example.searchkaro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378576808233-2d40tlrs3s878ss1ma6rajbdt2s68c5b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.searchkaro",
+            "certificate_hash": "afd2bcb72a209591d09d2a65a9db12946bf80b95"
+          }
+        },
+        {
+          "client_id": "378576808233-088u2odssalq5016j1eusf90s2bq1b39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSj6jevQOicvKi6-XshcezfcFF0fXSH3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378576808233-088u2odssalq5016j1eusf90s2bq1b39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
