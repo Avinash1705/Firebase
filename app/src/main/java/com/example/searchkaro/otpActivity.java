@@ -5,13 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
+
 import android.view.View;
+
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.searchkaro.AdminPower.ChooseAdminPage;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,18 +23,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
 public class otpActivity extends AppCompatActivity {
+    private static final String TAG ="raw_otp" ;
     private FirebaseAuth mAuth;
     private EditText otp,number;
-
     private String mnumber,VerificatinCode;
-
-
+    private Button ap_btn;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
@@ -41,6 +40,8 @@ public class otpActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //  updateUI(currentUser);
         if(currentUser !=null){
+
+            Log.d(TAG, "UUId "+currentUser.getUid());
             Toast.makeText(getApplicationContext(),"Already Registred",Toast.LENGTH_SHORT).show();
             startActivity(new Intent(otpActivity.this,registrationActivity.class));
         }
@@ -57,6 +58,12 @@ public class otpActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         init();
+        ap_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(otpActivity.this, ChooseAdminPage.class));
+            }
+        });
 
 
         mCallbacks=new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -82,6 +89,8 @@ public class otpActivity extends AppCompatActivity {
     }
 
     private void init(){
+        ap_btn=findViewById(R.id.ap_btn);
+
         otp=findViewById(R.id.otp);number=findViewById(R.id.number);
 //        address=findViewById(R.id.address);
 //        name=findViewById(R.id.name);

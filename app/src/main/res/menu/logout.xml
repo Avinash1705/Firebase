@@ -6,7 +6,6 @@
         android:enabled="true"
         android:title="Logout"
         android:onClick="Logout"
-
         app:showAsAction="ifRoom"/>
 
 

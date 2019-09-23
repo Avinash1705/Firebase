@@ -4,24 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OptActivity"
+    tools:context=".otpActivity"
     android:orientation="vertical"
     android:padding="40dp">
-
-<!--    <EditText-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/address"-->
-<!--        android:hint="Address"/>-->
-<!--    <EditText-->
-<!--        android:layout_below="@+id/address"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/name"-->
-<!--        android:hint="Name"/>-->
-
     <EditText
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/number"
@@ -52,4 +38,14 @@
         android:id="@+id/signin"
         android:onClick="Verify"
         android:text="SIGN IN"/>
+
+    <Button
+       
+        android:layout_alignRight="@id/signin"
+        android:layout_below="@+id/signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ap_btn"
+        android:text="Admin"/>
+
 </RelativeLayout>

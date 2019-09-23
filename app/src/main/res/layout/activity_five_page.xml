@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FiveActivityPage">
+    tools:context=".FiveActivityPage"
+    android:padding="20dp"
+    android:background="@drawable/background">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/im_user"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/user_mid"
+        android:onClick="userDetail"/>
+
+    <ImageView
+        android:layout_below="@+id/im_user"
+        android:layout_alignParentRight="true"
+        android:id="@+id/im_bussiness"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/bussineess"
+        android:onClick="Busssinees"/>
+
+    <ImageView
+        android:id="@+id/im_newItem"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/im_bussiness"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="38dp"
+        app:srcCompat="@drawable/newitem"
+        android:onClick="NewDetail"/>
+
+    <ImageView
+        android:layout_below="@+id/im_bussiness"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/im_advertisement"
+        android:onClick="Advertisement"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/advertisement" />
+
+    <ImageView
+        android:id="@+id/im_contact"
+        android:layout_below="@+id/im_user"
+        android:layout_alignParentLeft="true"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        app:srcCompat="@drawable/contact" />
+
+
+    <ImageView
+        android:layout_marginTop="70dp"
+        android:id="@+id/search_mid"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/im_user"
+        android:layout_width="94dp"
+        android:layout_height="140dp"
+        android:onClick="serachMid"
+        app:srcCompat="@drawable/seach_mid" />
+</RelativeLayout>
