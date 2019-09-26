@@ -33,12 +33,12 @@ public class AdminLoginActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), ChooseAdminPage.class));
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Please Enter Correct Password",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Please Enter Correct Password & Username",Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
-    private void init(){
-
-    }
+//    private void init(){
+//
+//    }
 }
