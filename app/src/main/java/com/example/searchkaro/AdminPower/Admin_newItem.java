@@ -43,6 +43,7 @@ import java.util.UUID;
 
 public class Admin_newItem extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
+    private static final String TAG ="rawtrack" ;
 
     private Button mButtonChooseImage;
     private Button mButtonUpload;
@@ -51,9 +52,10 @@ public class Admin_newItem extends AppCompatActivity {
     private ImageView mImageView;
     private ProgressBar mProgressBar;
     private  FirebaseStorage storage;
+    private StorageReference mStorageRef;
     private Uri mImageUri;
 
-    private StorageReference mStorageRef;
+
     private DatabaseReference mDatabaseRef;
 
     private StorageTask mUploadTask;
@@ -70,8 +72,9 @@ public class Admin_newItem extends AppCompatActivity {
         mImageView = findViewById(R.id.image_view);
         mProgressBar = findViewById(R.id.progress_bar);
         storage=FirebaseStorage.getInstance();
-        //init
-        mStorageRef = FirebaseStorage.getInstance().getReference("uploads");
+
+        //init storageReference =mStorageReference
+        mStorageRef = storage.getInstance().getReference("uploads");
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -106,11 +109,12 @@ public class Admin_newItem extends AppCompatActivity {
             progressDialog.setTitle("Uploading");
             progressDialog.show();
 
-            StorageReference ref=mStorageRef.child("image/"+ UUID.randomUUID().toString());
+            StorageReference ref=mStorageRef.child("images/rivers.jpg");
             ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     progressDialog.dismiss();
+                    Log.d(TAG, "onSuccess: "+taskSnapshot);
                     Toast.makeText(getApplicationContext(),"Uploaded Data",Toast.LENGTH_SHORT).show();
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -132,7 +136,7 @@ public class Admin_newItem extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"),PICK_IMAGE_REQUEST);
     }
 
     @Override

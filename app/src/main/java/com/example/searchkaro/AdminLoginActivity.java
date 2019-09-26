@@ -38,7 +38,5 @@ public class AdminLoginActivity extends AppCompatActivity {
             }
         });
     }
-//    private void init(){
-//
-//    }
+
 }
