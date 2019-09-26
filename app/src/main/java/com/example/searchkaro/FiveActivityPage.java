@@ -55,4 +55,9 @@ private ImageView user,bussiness,newItem,adver,contact,m_serach;
         startActivity(new Intent(FiveActivityPage.this,SearchKaro.class));
 
     }
+
+    public void Admin_Contact(View view) {
+        startActivity(new Intent(FiveActivityPage.this,Contact.class));
+
+    }
 }

@@ -52,7 +52,8 @@
         android:layout_alignParentLeft="true"
         android:layout_width="94dp"
         android:layout_height="140dp"
-        app:srcCompat="@drawable/contact" />
+        app:srcCompat="@drawable/contact"
+        android:onClick="Admin_Contact"/>
 
 
     <ImageView

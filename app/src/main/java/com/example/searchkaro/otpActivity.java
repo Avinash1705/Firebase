@@ -61,7 +61,7 @@ public class otpActivity extends AppCompatActivity {
         ap_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(otpActivity.this, ChooseAdminPage.class));
+                startActivity(new Intent(otpActivity.this, AdminLoginActivity.class));
             }
         });
 

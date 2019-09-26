@@ -8,7 +8,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.searchkaro.Model.advData;
-import com.example.searchkaro.Model.newData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class Advertise_User extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_advertise__user);
         heroList = new ArrayList<>();
-        listView =  findViewById(R.id.lv_allData);
+        listView =  findViewById(R.id.lv_adv);
 
         heroList.add(new advData(R.drawable.advertisement,"advertisement"));
         heroList.add(new advData(R.drawable.bussineess,"Bussiness"));
