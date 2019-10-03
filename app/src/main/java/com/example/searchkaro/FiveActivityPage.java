@@ -10,6 +10,8 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.example.searchkaro.Bussiness_Registration.Bussiness_type_registration;
+
 public class FiveActivityPage extends AppCompatActivity {
 private ImageView user,bussiness,newItem,adver,contact,m_serach;
     @Override
@@ -41,7 +43,7 @@ private ImageView user,bussiness,newItem,adver,contact,m_serach;
     }
 
     public void Busssinees(View view) {
-//        startActivity(new Intent(FiveActivityPage.this,NewItemActivity.class));
+        startActivity(new Intent(FiveActivityPage.this, Bussiness_type_registration.class));
         Toast.makeText(this,"Busssineess Working",Toast.LENGTH_SHORT).show();
 
     }

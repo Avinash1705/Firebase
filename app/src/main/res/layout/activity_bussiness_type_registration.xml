@@ -1,9 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="25dp"
+    android:orientation="vertical"
     tools:context=".Bussiness_Registration.Bussiness_type_registration">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/trade_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="trade_list"
+        android:text="Trade List"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_trade_list"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_marginLeft="40dp"
+        >
+        <TextView
+            android:id="@+id/premium_10km"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Premium"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            />
+        <TextView
+            android:id="@+id/Luxary_50km"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Luxary"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/product_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Product List"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:onClick="product_list"
+        android:layout_marginTop="50dp"
+        />
+    <LinearLayout
+        android:layout_marginLeft="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_product_list"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+        <TextView
+            android:id="@+id/silver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Silver"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            />
+        <TextView
+            android:id="@+id/gold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Gold"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            />
+        <TextView
+            android:id="@+id/platinum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Platinum"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            />
+
+        <TextView
+            android:id="@+id/diamond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:onClick="trade_list"
+            android:text="Diamond"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <TextView
+    android:id="@+id/bussiness_list"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="50dp"
+    android:onClick="bussiness_list"
+    android:text="Bussiness List"
+    android:textSize="25dp"
+    android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/bussiness_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:onClick="bussiness_list"
+        android:text="Bussiness Card"
+        android:textSize="25dp"
+        android:visibility="gone"
+        android:textStyle="bold" />
+
+</LinearLayout>
