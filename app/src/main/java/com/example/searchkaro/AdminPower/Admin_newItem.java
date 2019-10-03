@@ -74,7 +74,7 @@ public class Admin_newItem extends AppCompatActivity {
         storage=FirebaseStorage.getInstance();
 
         //init storageReference =mStorageReference
-        mStorageRef = storage.getInstance().getReference("uploads");
+        mStorageRef = storage.getInstance().getReference();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("uploads");
 
         mButtonChooseImage.setOnClickListener(new View.OnClickListener() {
@@ -109,26 +109,30 @@ public class Admin_newItem extends AppCompatActivity {
             progressDialog.setTitle("Uploading");
             progressDialog.show();
 
-            StorageReference ref=mStorageRef.child("images/rivers.jpg");
-            ref.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressDialog.dismiss();
-                    Log.d(TAG, "onSuccess: "+taskSnapshot);
-                    Toast.makeText(getApplicationContext(),"Uploaded Data",Toast.LENGTH_SHORT).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getApplicationContext(),"failed"+e.getMessage(),Toast.LENGTH_SHORT).show();
-                }
-            }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                    double progress=(100.0*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
-                    progressDialog.setMessage("Uploded"+(int)progress+"%");
-                }
-            });
+            StorageReference st = mStorageRef.child("images").child(mImageUri.getLastPathSegment());
+            try {
+                st.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressDialog.dismiss();
+                        Log.d(TAG, "onSuccess: " + taskSnapshot);
+                        Toast.makeText(getApplicationContext(), "Uploaded Data", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(getApplicationContext(), "failed" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        progressDialog.setMessage("Uploded" + (int) progress + "%");
+                    }
+                });
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
