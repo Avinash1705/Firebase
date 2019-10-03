@@ -1,7 +1,6 @@
 package com.example.searchkaro.Bussiness_Registration;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.searchkaro.R;
+
 
 public class Bussiness_type_registration extends AppCompatActivity implements View.OnClickListener{
         private TextView trade,product,bussiness,bussiness_card
