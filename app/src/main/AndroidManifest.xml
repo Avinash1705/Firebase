@@ -22,9 +22,9 @@
         <activity android:name=".Advertise_User" />
         <activity android:name=".NewItemActivity" />
         <activity android:name=".FiveActivityPage" > <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter></activity>
         <activity android:name=".registrationActivity" />
         <activity android:name=".otpActivity" />
         <activity android:name=".MainActivity">
