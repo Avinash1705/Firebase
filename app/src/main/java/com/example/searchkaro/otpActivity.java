@@ -9,6 +9,8 @@ import android.util.Log;
 
 import android.view.View;
 
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,22 +25,28 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
 public class otpActivity extends AppCompatActivity {
     private static final String TAG ="raw_otp" ;
     private FirebaseAuth mAuth;
-    private EditText otp,number;
+    private EditText otp,number,name,address;
     private String mnumber,VerificatinCode;
     private Button ap_btn;
+    FirebaseUser currentUser;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
     protected void onStart() {
+
         super.onStart();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        currentUser = mAuth.getCurrentUser();
         //  updateUI(currentUser);
+
+
         if(currentUser !=null){
 
             Log.d(TAG, "UUId "+currentUser.getUid());
@@ -55,9 +63,13 @@ public class otpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
+//        // remove title
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        init();
         mAuth = FirebaseAuth.getInstance();
 
-        init();
         ap_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,21 +93,32 @@ public class otpActivity extends AppCompatActivity {
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 super.onCodeSent(s, forceResendingToken);
                 VerificatinCode=s;
-                Toast.makeText(getApplicationContext(),"COde Send TO number",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"otp Send TO number",Toast.LENGTH_SHORT).show();
 
             }
         };
 
     }
+    private void writeToDb(){
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("Registered").child(currentUser.getUid());
+
+        myRef.child("Name").setValue(name.getText().toString());
+        myRef.child("mobile Number").setValue(number.getText().toString());
+        myRef.child("Address").setValue(address.getText().toString());
+
+    }
 
     private void init(){
         ap_btn=findViewById(R.id.ap_btn);
-
-        otp=findViewById(R.id.otp);number=findViewById(R.id.number);
-//        address=findViewById(R.id.address);
-//        name=findViewById(R.id.name);
+        name=findViewById(R.id.otp_name);
+        otp=findViewById(R.id.et_otp);
+        number=findViewById(R.id.otp_number);
+        address=findViewById(R.id.otp_address);
     }
     public void sendSms(View view){
+
         mnumber="+91"+number.getText().toString();
         if(mnumber!=null ){
 
@@ -115,6 +138,7 @@ public class otpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(getApplicationContext(),"USer Success SignIN",Toast.LENGTH_SHORT).show();
+//                writeToDb();
                 startActivity(new Intent(otpActivity.this,registrationActivity.class));
             }
         });

@@ -69,11 +69,9 @@ public class Contact extends AppCompatActivity {
             public void onCancelled(DatabaseError error) {
                 // Failed to read value
 //                Log.w(TAG, "Failed to read value.", error.toException());
-                Toast.makeText(getApplicationContext(),"Failed To read VAlue",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"Failed To read Value",Toast.LENGTH_SHORT).show();
             }
         });
     }
-    private void ReadToDatabase(){
 
-    }
 }

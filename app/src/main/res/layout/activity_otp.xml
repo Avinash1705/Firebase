@@ -6,41 +6,64 @@
     android:layout_height="match_parent"
     tools:context=".otpActivity"
     android:orientation="vertical"
-    android:padding="40dp">
-    <EditText
+    android:padding="40dp"
+    android:background="@drawable/out_back">
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/number"
-        android:hint="number"/>
+        android:orientation="vertical"
+        android:id="@+id/rl_threeFiels"
+        android:padding="20dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp_name"
+            android:hint="Name"/>
+        <EditText
+            android:layout_below="@+id/otp_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp_address"
+            android:hint="Address"/>
+        <EditText
+            android:layout_below="@+id/otp_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/otp_number"
+            android:hint="number"/>
+
+    </RelativeLayout>
+
     <Button
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/number"
+        android:layout_below="@+id/rl_threeFiels"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/getotp"
         android:onClick="sendSms"
-        android:text="get OTp"/>
+        android:text="Sign Up ?"/>
     <EditText
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
         android:layout_below="@+id/getotp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/otp"
+        android:id="@+id/et_otp"
         android:hint="otp"/>
     <Button
         android:layout_centerInParent="true"
         android:layout_marginTop="40dp"
-        android:layout_below="@+id/otp"
+        android:layout_below="@+id/et_otp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/signin"
         android:onClick="Verify"
-        android:text="SIGN IN"/>
+        android:text="Verify otp"/>
 
     <Button
-       
+
         android:layout_alignRight="@id/signin"
         android:layout_below="@+id/signin"
         android:layout_width="wrap_content"
