@@ -2,27 +2,32 @@ package com.example.searchkaro.Model;
 
 public class newData {
 
-    int img;
-    String detail;
+    String title,image,description;
 
-    public newData(int img, String detail) {
-        this.img = img;
-        this.detail = detail;
+   public newData(){}
+   //getter setter
+
+    public String getTitle() {
+        return title;
     }
 
-    public int getImg() {
-        return img;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public String getImage() {
+        return image;
     }
 
-    public String getDetail() {
-        return detail;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

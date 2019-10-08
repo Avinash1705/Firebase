@@ -11,6 +11,7 @@ import android.view.View;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.searchkaro.AdminPower.ChooseAdminPage;
@@ -23,15 +24,27 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.concurrent.TimeUnit;
 
 public class otpActivity extends AppCompatActivity {
     private static final String TAG ="raw_otp" ;
     private FirebaseAuth mAuth;
-    private EditText otp,number;
-    private String mnumber,VerificatinCode;
+    private EditText otp,number,name,address;;
+    private String mnumber,mname,mAddress,VerificatinCode;
     private Button ap_btn;
+    private FirebaseUser firebaseUser;
+    private FirebaseAuth firebaseAuth;
+    private LinearLayout linearLayout;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+    DatabaseReference myRef = database.getReference("Details");
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
 
     @Override
@@ -43,7 +56,7 @@ public class otpActivity extends AppCompatActivity {
 
             Log.d(TAG, "UUId "+currentUser.getUid());
             Toast.makeText(getApplicationContext(),"Already Registred",Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(otpActivity.this,registrationActivity.class));
+            startActivity(new Intent(otpActivity.this,FiveActivityPage.class));
         }
         else{
             Toast.makeText(getApplicationContext(),"Register First",Toast.LENGTH_SHORT).show();
@@ -56,6 +69,8 @@ public class otpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp);
         mAuth = FirebaseAuth.getInstance();
+        firebaseAuth=FirebaseAuth.getInstance();
+        firebaseUser=firebaseAuth.getCurrentUser();
 
         init();
         ap_btn.setOnClickListener(new View.OnClickListener() {
@@ -89,15 +104,49 @@ public class otpActivity extends AppCompatActivity {
     }
 
     private void init(){
+        linearLayout=findViewById(R.id.for_registration);
+        name=findViewById(R.id.et_name);
+        address=findViewById(R.id.et_address);
         ap_btn=findViewById(R.id.ap_btn);
-
         otp=findViewById(R.id.otp);number=findViewById(R.id.number);
 //        address=findViewById(R.id.address);
 //        name=findViewById(R.id.name);
     }
+    private void WriteToDatabase(){
+        // Write a message to the database
+        String m_name,m_address,uuid;
+        m_name=name.getText().toString().trim();
+        m_address=address.getText().toString().trim();
+        uuid=firebaseUser.getUid();
+
+        myRef.child(uuid).child("Name").setValue(m_name);
+        myRef.child(uuid).child("Address").setValue(m_address);
+    }
+    private void ReadDatabase(){
+        // Read from the database
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                String value = dataSnapshot.getValue(String.class);
+                Log.d(TAG, "Value is: " + value);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w(TAG, "Failed to read value.", databaseError.toException());
+            }
+
+        });
+    }
     public void sendSms(View view){
+        linearLayout.setVisibility(View.VISIBLE);
         mnumber="+91"+number.getText().toString();
-        if(mnumber!=null ){
+
+        mname=name.getText().toString().trim();
+        mAddress=address.getText().toString().trim();
+        if(mnumber!=null && mname!=null &&mAddress!=null){
 
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     mnumber,        // Phone number to verify
@@ -115,11 +164,12 @@ public class otpActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 Toast.makeText(getApplicationContext(),"USer Success SignIN",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(otpActivity.this,registrationActivity.class));
+                startActivity(new Intent(otpActivity.this,FiveActivityPage.class));
             }
         });
     }
     public void Verify(View v){
+//        WriteToDatabase();
         String  input_code=otp.getText().toString();
         verifyPhoneNumber(VerificatinCode,input_code);
 

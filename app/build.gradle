@@ -44,4 +44,9 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-}
+    implementation 'com.squareup.picasso:picasso:2.71828'
+//Firebase Recycler
+    implementation 'com.firebaseui:firebase-ui-database:3.2.1'
+
+    //card view
+    implementation 'com.android.support:cardview-v7:28.0.0'}

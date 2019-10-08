@@ -103,7 +103,7 @@ public class Admin_newItem extends AppCompatActivity {
             progressDialog.setTitle("Uploading");
             progressDialog.show();
 
-            StorageReference st = mStorageRef.child("images").child(mImageUri.getLastPathSegment());
+            StorageReference st = mStorageRef.child("New Item").child(mImageUri.getLastPathSegment());
             try {
                 st.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
